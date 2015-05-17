@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+function pad(c, s, n) {
+	return String(new Array(n).join(c) + s).slice(-n);
+}
+
+var setDateTime = function() {
+	var d      = new Date();
+	var day    = pad("0", d.getDate(), 2) ;
+	var hour   = pad("0", d.getHours(), 2);
+	var min    = pad("0", d.getMinutes(), 2) ;
+	var sec    = pad("0", d.getSeconds(), 2);
+	var month  = d.getMonth();
+	var year   = d.getFullYear();
+	var ampm   = hour >= 12 ? "PM" : "AM";
+	var hour   = hour > 12 ? hour - 12  : hour;
+
+	var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+	document.getElementById("time").innerHTML = hour + ":" + min + " " + ampm
+	document.getElementById("date").innerHTML = months[month] + " " + day + ", " + year;
+}
+
+window.setInterval(setDateTime, 1000)
+</script>
+<style>
+body {
+	background-color: black;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+div.pusher {
+	height: 15%;
+}
+
+div.content {
+	height: 100%;
+    width:  100%;
+	color:  white;
+	overflow: hidden;
+}
+
+div.time {
+	height: 40%;
+	font-size: 20vw;
+}
+
+div.date {
+	height: 40%;
+	font-size: 13vw;
+}
+
+div.center {
+	text-align: center;
+}
+</style>
+</head>
+<body onload="setDateTime()">
+	<div class="content">
+		<div class="pusher"></div>
+		<div class="time center" id="time"></div>
+		<div class="date center" id="date"></div>
+	</div>
+</body>
+</html>
