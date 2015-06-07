@@ -3,11 +3,35 @@
 <meta charset="UTF-8">
 
 <script>
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+var locations = [];
+
+function init() {
+	setDateTime();
+	find_element('time');
+   	position_seconds();
+}
+
 function pad(c, s, n) {
 	return String(new Array(n).join(c) + s).slice(-n);
 }
 
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+function find_element(name) {
+	var rect = document.getElementById(name).getBoundingClientRect();
+	var e = document.getElementById(name);
+	locations[name + 'top'] = rect.top;
+	locations[name + 'bottom'] = rect.bottom;
+	locations[name + 'left'] = rect.left;
+	locations[name + 'right'] = rect.right;
+	console.log(name, locations[name + 'right'], locations[name + 'left'], locations[name + 'top'], locations[name + 'bottom']);
+}
+
+function position_seconds() {
+	var se = document.getElementById("seconds");
+	var te = document.getElementById("time");
+	se.style.top = te.offsetHeight/2;
+	console.log(te.offsetHeight);
+}
 
 var setDateTime = function() {
 	var d      = new Date();
@@ -22,6 +46,7 @@ var setDateTime = function() {
 
 	document.getElementById("time").innerHTML = hour + ":" + min + " " + ampm
 	document.getElementById("date").innerHTML = months[month] + " " + day + ", " + year;
+	document.getElementById("seconds").innerHTML = sec;
 }
 
 window.setInterval(setDateTime, 1000)
@@ -57,10 +82,9 @@ div.date {
 
 div.seconds {
 	position: absolute;
-	left: 58.5%;
-	top: 20%;
+	right: 4%;
 	font-size: 400%;
-	color: rgb(24,24,24);
+	color: rgb(48,48,48);
 }
 
 div.center {
@@ -68,11 +92,12 @@ div.center {
 }
 </style>
 </head>
-<body onload="setDateTime()">
+<body onload="init();">
 	<div class="content">
-		<div class="pusher"></div>
+		<div class="pusher" id="pusher"></div>
 		<div class="time center" id="time"></div>
 		<div class="date center" id="date"></div>
+		<div class="seconds" id="seconds"></div>
 	</div>
 </body>
 </html>
