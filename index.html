@@ -7,6 +7,8 @@ function pad(c, s, n) {
 	return String(new Array(n).join(c) + s).slice(-n);
 }
 
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
 var setDateTime = function() {
 	var d      = new Date();
 	var day    = pad("0", d.getDate(), 2) ;
@@ -17,8 +19,6 @@ var setDateTime = function() {
 	var year   = d.getFullYear();
 	var ampm   = hour >= 12 ? "PM" : "AM";
 	var hour   = hour > 12 ? hour - 12  : hour;
-
-	var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 	document.getElementById("time").innerHTML = hour + ":" + min + " " + ampm
 	document.getElementById("date").innerHTML = months[month] + " " + day + ", " + year;
