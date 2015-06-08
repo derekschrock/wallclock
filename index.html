@@ -23,14 +23,15 @@ function find_element(name) {
 	locations[name + 'bottom'] = rect.bottom;
 	locations[name + 'left'] = rect.left;
 	locations[name + 'right'] = rect.right;
-	console.log(name, locations[name + 'right'], locations[name + 'left'], locations[name + 'top'], locations[name + 'bottom']);
 }
 
 function position_seconds() {
 	var se = document.getElementById("seconds");
 	var te = document.getElementById("time");
-	se.style.top = te.offsetHeight/2;
-	console.log(te.offsetHeight);
+	se.style.top = locations["timetop"] - se.offsetHeight;
+	console.log(se.offsetHeight);
+	console.log(locations["timetop"]);
+
 }
 
 var setDateTime = function() {
@@ -84,7 +85,7 @@ div.seconds {
 	position: absolute;
 	right: 4%;
 	font-size: 400%;
-	color: rgb(48,48,48);
+	color: rgb(16,16,16);
 }
 
 div.center {
