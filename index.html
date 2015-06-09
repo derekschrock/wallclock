@@ -35,13 +35,13 @@ function position_seconds() {
 var setDateTime = function() {
 	var d      = new Date();
 	var day    = pad("0", d.getDate(), 2) ;
-	var hour   = pad("0", d.getHours(), 2);
+	var hour   = d.getHours();
 	var min    = pad("0", d.getMinutes(), 2) ;
 	var sec    = pad("0", d.getSeconds(), 2);
 	var month  = d.getMonth();
 	var year   = d.getFullYear();
 	var ampm   = hour >= 12 ? "PM" : "AM";
-	var hour   = hour > 12 ? hour - 12  : hour;
+	var hour   = pad("0", hour > 12 ? hour - 12  : hour, 2);
 
 	document.getElementById("time").innerHTML = hour + ":" + min + " " + ampm
 	document.getElementById("date").innerHTML = months[month] + " " + day + ", " + year;
