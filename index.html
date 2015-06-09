@@ -41,7 +41,7 @@ var setDateTime = function() {
 	var month  = d.getMonth();
 	var year   = d.getFullYear();
 	var ampm   = hour >= 12 ? "PM" : "AM";
-	var hour   = pad("0", hour > 12 ? hour - 12  : hour, 2);
+	var hour   = pad("0", hour > 12 ? hour - 12 : hour, 2);
 
 	document.getElementById("time").innerHTML = hour + ":" + min + " " + ampm
 	document.getElementById("date").innerHTML = months[month] + " " + day + ", " + year;
