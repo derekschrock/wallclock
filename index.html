@@ -4,6 +4,7 @@
 
 <script>
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var locations = [];
 
 function init() {
@@ -34,6 +35,7 @@ function position_seconds() {
 
 var setDateTime = function() {
 	var d      = new Date();
+	var dow	   = d.getDay();
 	var day    = pad("0", d.getDate(), 2) ;
 	var hour   = d.getHours();
 	var min    = pad("0", d.getMinutes(), 2) ;
@@ -46,6 +48,7 @@ var setDateTime = function() {
 	document.getElementById("time").innerHTML = hour + ":" + min + " " + ampm
 	document.getElementById("date").innerHTML = months[month] + " " + day + ", " + year;
 	document.getElementById("seconds").innerHTML = sec;
+	document.getElementById("dow").innerHTML = days[dow];
 }
 
 window.setInterval(setDateTime, 1000)
@@ -58,10 +61,6 @@ body {
 	font-family: sans-serif;
 }
 
-div.pusher {
-	height: 15%;
-}
-
 div.content {
 	height: 100%;
 	width:  100%;
@@ -69,13 +68,18 @@ div.content {
 	overflow: hidden;
 }
 
+div.dow{
+	height: 25%;
+	font-size: 13vw;
+}
+
 div.time {
-	height: 45%;
+	height: 40%;
 	font-size: 20vw;
 }
 
 div.date {
-	height: 45%;
+	height: 25%;
 	font-size: 13vw;
 }
 
@@ -93,7 +97,7 @@ div.center {
 </head>
 <body onload="init();">
 	<div class="content">
-		<div class="pusher" id="pusher"></div>
+		<div class="dow center" id="dow"></div>
 		<div class="time center" id="time"></div>
 		<div class="date center" id="date"></div>
 		<div class="seconds" id="seconds"></div>
